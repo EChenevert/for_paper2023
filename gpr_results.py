@@ -420,10 +420,10 @@ cb.set_label('Density of Predictions', rotation=270, fontsize=21)
 ax.plot([target.min(), target.max()], [target.min(), target.max()],
         "k--", lw=3)
 
-ax.annotate("Median r-squared = {:.3f}".format(r2_final_median), xy=(20, 410), xycoords='axes points',
+ax.annotate("Median r-squared = {:.3f}".format(r2_final_median), xy=(190, 30), xycoords='axes points',
             bbox=dict(boxstyle='round', fc='w'),
             size=15, ha='left', va='top')
-ax.annotate("Median MAE = {:.3f}".format(mae_final_median), xy=(20, 380), xycoords='axes points',
+ax.annotate("Median MAE = {:.3f}".format(mae_final_median), xy=(190, 60), xycoords='axes points',
             bbox=dict(boxstyle='round', fc='w'),
             size=15, ha='left', va='top')
 plt.show()
