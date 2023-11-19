@@ -263,10 +263,14 @@ indirectly_supplied = gdf[(gdf['Basins'] != 'MRD') | (gdf['Basins'] != 'Atchafal
                           | (gdf['Basins'] != np.nan) | (gdf['Basins'] != 'Unnamed_basin')]
 
 marshdic = {'All': gdf, 'Ponchartrain': ponchartraindf, 'BrentonSound': brentondf,
-            # 'MRD': mrddf, 
+            # 'MRD': mrddf,  # Excluded because not enough data for cross-validation assessment and linaer regression significance
             'Barataria': baratariadf,
-            'Terrebonne': terrebonnedf, 'Atchafalaya': atchafalayadf, 'TecheVermillion': tech_vermdf,
-            'Mermentau': mermdf, 'CalcasieuSabine': calc_sabdf, 'Indirectly_supplied': indirectly_supplied,
+            'Terrebonne': terrebonnedf,
+            'Atchafalaya': atchafalayadf,
+            'TecheVermillion': tech_vermdf,
+            'Mermentau': mermdf,
+            # 'CalcasieuSabine': calc_sabdf, # Excluded because no features were deemed below the set significance threshold in the backward elimination process
+            'Indirectly_supplied': indirectly_supplied,
             'directly_supplied': directly_supplied}
 
 
