@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv(r"D:\\Etienne\\fall2022\\agu_data\\results\\AGU_dataset.csv", encoding='unicode_escape')
 
+df = df.rename(columns={'TSS (mg/l)': 'TSS (mg/L)'})
+
 ### Histograms of GPR variables
 # Tidal Amplitude
 sns.set_theme(style='white', font_scale=1.4)
