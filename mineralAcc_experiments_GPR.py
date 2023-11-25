@@ -403,10 +403,10 @@ ax.annotate("Median MAE = {:.3f}".format(mae_final_median), xy=(190, 60), xycoor
             size=15, ha='left', va='top')
 plt.show()
 
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\cross_validation.eps",
-#             format='eps',
-#             dpi=300,
-#             bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\cross_validation.eps",
+            format='eps',
+            dpi=300,
+            bbox_inches='tight')
 
 
 # SHAP analysis
@@ -435,7 +435,7 @@ shap.summary_plot(shap_values, features=X, feature_names=X.columns, plot_size=[1
 plt.xlabel('mean(|SHAP value|)(average impact on model output magnitude)', fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=21)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\shap_summaryplot.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\shap_summaryplot.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 # Bar plot for feature importance
 plt.figure()
@@ -443,14 +443,14 @@ shap.summary_plot(shap_values, features=X, feature_names=X.columns, plot_size=[1
 plt.xlabel('mean(|SHAP value|)(average impact on model output magnitude)', fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=21)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\shap_barplot.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\shap_barplot.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 # Summary heat map
 plt.figure()
 shap.plots.heatmap(shap_values, instance_order=shap_values.sum(1), show=False)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=21)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\summary_heatmap.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\summary_heatmap.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 # Partial and SHAP dependence for Tidal Amplitude
 plt.figure()
@@ -460,7 +460,7 @@ shap.partial_dependence_plot('Tidal Amplitude (*)', gpr.predict, X500, ice=False
 # plt.ylabel("Tidal Amplitude (*)", fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidalAmplitude_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidalAmplitude_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 plt.figure()
 shap.plots.scatter(shap_values[:, 'Tidal Amplitude (*)'], color=shap_values[:, 'Avg. Flood Depth (*)'],
@@ -469,7 +469,7 @@ plt.xlabel("Tidal Amplitude (*)", fontsize=21)
 plt.ylabel("SHAP value for Tidal Amplitude (*)", fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidalAmplitude_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidalAmplitude_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 
 # Partial and SHAP dependence for Avg. flood depth
@@ -478,7 +478,7 @@ shap.partial_dependence_plot('Avg. Flood Depth (*)', gpr.predict, X500, ice=Fals
                              feature_expected_value=True, show=False)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\90flooddepth_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\90flooddepth_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 plt.figure()
 shap.plots.scatter(shap_values[:, 'Avg. Flood Depth (*)'], color=shap_values[:, 'Tidal Amplitude (*)'],
@@ -487,7 +487,7 @@ plt.xlabel('Avg. Flood Depth (*)', fontsize=21)
 plt.ylabel('SHAP value for Avg. Flood Depth (*)', fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\90flodddepth_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\90flodddepth_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 # partial and SHAP for NDVI
 plt.figure()
@@ -497,7 +497,7 @@ shap.partial_dependence_plot('NDVI (*)', gpr.predict, X500, ice=False, model_exp
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 plt.figure()
 shap.plots.scatter(shap_values[:, 'NDVI (*)'], color=shap_values[:, 'Soil Porewater Salinity (*)'],
@@ -506,7 +506,7 @@ plt.xlabel('NDVI (*)', fontsize=21)
 plt.ylabel('SHAP value for NDVI (*)', fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 # ppartial and SHAP for salinity
 plt.figure()
@@ -514,7 +514,7 @@ shap.partial_dependence_plot('Soil Porewater Salinity (*)', gpr.predict, X500, i
                              feature_expected_value=True, show=False)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\salinity_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\salinity_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 plt.figure()
 shap.plots.scatter(shap_values[:, 'Soil Porewater Salinity (*)'], color=shap_values[:, 'NDVI (*)'],
@@ -523,7 +523,7 @@ plt.xlabel('Soil Porewater Salinity (*)', fontsize=21)
 plt.ylabel('SHAP value for Soil Porewater Salinity (*)', fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\salinity_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\salinity_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 # partial and SHAP for TSS
 plt.figure()
@@ -533,7 +533,7 @@ shap.partial_dependence_plot('TSS (*)', gpr.predict, X500, ice=False, model_expe
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=21)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\TSS_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\TSS_partial.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 plt.figure()
 shap.plots.scatter(shap_values[:, 'TSS (*)'], color=shap_values[:, 'Soil Porewater Salinity (*)'],
@@ -542,7 +542,7 @@ plt.xlabel('TSS (*)', fontsize=21)
 plt.ylabel('SHAP value for TSS (*)', fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=21)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\TSS_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\TSS_partialSHAP.pdf", format="pdf", dpi=300, bbox_inches='tight')
 
 
 # SHAP Dependence Plots for the discussion regarding interactions between tidal amplitude, flood depth, and NDVI
@@ -554,8 +554,8 @@ shap.plots.scatter(shap_values[:, 'Tidal Amplitude (*)'], color=shap_values[:, '
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=21)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidal_NDVI_partialSHAP.pdf", format="pdf", dpi=300,
-#             bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidal_NDVI_partialSHAP.pdf", format="pdf", dpi=300,
+            bbox_inches='tight')
 # Flood Depth + NDVI
 plt.figure()
 shap.plots.scatter(shap_values[:, 'Avg. Flood Depth (*)'], color=shap_values[:, 'NDVI (*)'],
@@ -564,8 +564,8 @@ shap.plots.scatter(shap_values[:, 'Avg. Flood Depth (*)'], color=shap_values[:, 
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=21)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\flood_NDVI_partialSHAP.pdf", format="pdf", dpi=300,
-#             bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\flood_NDVI_partialSHAP.pdf", format="pdf", dpi=300,
+            bbox_inches='tight')
 # Tidal + Salinity
 plt.figure()
 shap.plots.scatter(shap_values[:, 'Tidal Amplitude (*)'], color=shap_values[:, 'Soil Porewater Salinity (*)'],
@@ -574,8 +574,8 @@ shap.plots.scatter(shap_values[:, 'Tidal Amplitude (*)'], color=shap_values[:, '
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidal_salinity_partialSHAP.pdf", format="pdf", dpi=300,
-#             bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\tidal_salinity_partialSHAP.pdf", format="pdf", dpi=300,
+            bbox_inches='tight')
 # Flood + Salinity
 plt.figure()
 shap.plots.scatter(shap_values[:, 'Avg. Flood Depth (*)'], color=shap_values[:, 'Soil Porewater Salinity (*)'],
@@ -584,8 +584,8 @@ shap.plots.scatter(shap_values[:, 'Avg. Flood Depth (*)'], color=shap_values[:, 
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\flood_salinity_partialSHAP.pdf", format="pdf", dpi=300,
-#             bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\flood_salinity_partialSHAP.pdf", format="pdf", dpi=300,
+            bbox_inches='tight')
 # NDVI + Tide
 plt.figure()
 shap.plots.scatter(shap_values[:, 'NDVI (*)'], color=shap_values[:, 'Tidal Amplitude (*)'],
@@ -594,8 +594,8 @@ shap.plots.scatter(shap_values[:, 'NDVI (*)'], color=shap_values[:, 'Tidal Ampli
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_tide_partialSHAP.pdf", format="pdf", dpi=300,
-#             bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_tide_partialSHAP.pdf", format="pdf", dpi=300,
+            bbox_inches='tight')
 # NDVI + flood
 plt.figure()
 shap.plots.scatter(shap_values[:, 'NDVI (*)'], color=shap_values[:, 'Avg. Flood Depth (*)'],
@@ -604,8 +604,8 @@ shap.plots.scatter(shap_values[:, 'NDVI (*)'], color=shap_values[:, 'Avg. Flood 
 # plt.ylabel(fontsize=21)
 ax = plt.gca()
 ax.tick_params(axis='both', which='major', labelsize=18)
-# plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_flood_partialSHAP.pdf", format="pdf", dpi=300,
-#             bbox_inches='tight')
+plt.savefig("D:\\Etienne\\PAPER_2023\\results_GPR\\mineralAcc\\NDVI_flood_partialSHAP.pdf", format="pdf", dpi=300,
+            bbox_inches='tight')
 # I think these interactions make sense if we see the distribution of NDVI values across marsh types (?)
 # ---- This would say that saline marshes have the lowest NDVI, thus, these areas are the ones accreting the most...?
 # ---- But then we have to explain how...?
