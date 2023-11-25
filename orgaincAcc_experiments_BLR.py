@@ -82,7 +82,7 @@ floodDepth = pd.read_csv(r"D:\Etienne\PAPER_2023\CRMS_Continuous_Hydrographic\fl
 df = pd.concat([bysite, distRiver, nearWater, gee, jrc, wl, perc, SEC, floodfreq, floodDepth, acc, marshElev],
                axis=1, join='outer')
 
-# df.to_csv("D:\\Etienne\\fall2022\\agu_data\\results\\orgAcc_minimal_preprocessing.csv")
+# df.to_csv("D:\\Etienne\\fall2022\\agu_data\\results\\organicAcc\\orgAcc_minimal_preprocessing.csv")
 
 
 
@@ -138,7 +138,7 @@ udf = udf.drop(["Mineral Mass Accumulation (g/yr)", "Total Mass Accumulation (g/
                 "Accretion Rate (mm/yr)", 'Average_Ac_cm_yr', 'Surface Elevation Change Rate (cm/y)',
                 'Organic Mass Accumulation Fraction', 'Acc_rate_fullterm (cm/y)'], axis=1)
 
-# udf.to_csv("D:\\Etienne\\fall2022\\agu_data\\results\\orgAcc_dataset_noOutlierRm.csv")
+# udf.to_csv("D:\\Etienne\\fall2022\\agu_data\\results\\organicAcc\\orgAcc_dataset_noOutlierRm.csv")
 # Try to semi-standardize variables
 des = udf.describe()  # just to identify which variables are way of the scale
 udf['distance_to_river_km'] = udf['distance_to_river_m']/1000  # convert to km
@@ -230,7 +230,7 @@ gdf = gdf.drop(['Std. Deviation Flood Depth (ft)', 'Avg. Flood Depth (ft)', '10t
                 '90th Percentile Flood Depth (ft)', 'Tide Amp (ft)'], axis=1)
 
 # Export gdf to file specifically for AGU data and results
-# gdf.to_csv("D:\\Etienne\\fall2022\\agu_data\\results\\orgAcc_dataset.csv")
+# gdf.to_csv("D:\\Etienne\\fall2022\\agu_data\\results\\organicAcc\\orgAcc_dataset.csv")
 # gdf = gdf.drop('distance_to_ocean_km', axis=1)  # why?
 # split into marsh datasets
 
@@ -299,7 +299,9 @@ for key in marshdic:
 
     baymod = linear_model.BayesianRidge(fit_intercept=True)
 
-    results_dict = funcs.cv_results_and_plot(baymod, bestfeaturesM, phi, X, y, {'cmap': 'YlOrRd', 'line': "r--"}, str(key))
+    results_dict = funcs.cv_results_and_plot_PATH(baymod, bestfeaturesM, phi, X, y,
+                                                     {'cmap': 'YlOrRd', 'line': "r--"}, str(key),
+                                                     "D:\\Etienne\\PAPER_2023\\results_BLR\\organicAcc\\")
 
     hold_marsh_weights[key] = results_dict["Scaled Weights"]
     hold_unscaled_weights[key] = results_dict["Unscaled Weights"]
@@ -347,10 +349,10 @@ for key in hold_marsh_weights:
     sns.barplot(list(d['index']), list(d['Means']), palette=palette_ls)
     funcs.wrap_labels(ax, 10)
     fig.subplots_adjust(bottom=0.3)
-#     fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\" + str(key) +
-#                 "_orgAcc_scaledX_nolog_boxplot_human.eps", format='eps',
-#                 dpi=300,
-#                 bbox_inches='tight')
+    fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\organicAcc\\" + str(key) +
+                "_orgAcc_scaledX_nolog_boxplot_human.eps", format='eps',
+                dpi=300,
+                bbox_inches='tight')
     plt.show()
 
 # Plot the distribution of weight parameters for the marsh runs
@@ -371,10 +373,10 @@ for key in hold_unscaled_weights:
     boxplot = sns.boxplot(data=hold_unscaled_weights[key], notch=True, showfliers=False, palette=palette_ls, width=0.4)
     funcs.wrap_labels(ax, 10)
     fig.subplots_adjust(bottom=0.3)
-#     fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\" + str(
-#         key) + "_orgAcc_unscaledWeights_nolog_boxplot_human.eps", format='eps',
-#                 dpi=300,
-#                 bbox_inches='tight')
+    fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\organicAcc\\" + str(
+        key) + "_orgAcc_unscaledWeights_nolog_boxplot_human.eps", format='eps',
+                dpi=300,
+                bbox_inches='tight')
     plt.show()
 
 
@@ -386,10 +388,10 @@ fig, ax = plt.subplots(figsize=(6, 4))
 ax.set_title('Distribution of Learned Effective Regularization Parameters')
 sns.boxplot(data=eff_reg_df, notch=True, showfliers=False, palette="YlOrBr")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\orgAcc_regularization_scaledX_nolog_boxplot_human.eps",
-#             format='eps',
-#             dpi=300,
-#             bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\organicAcc\\orgAcc_regularization_scaledX_nolog_boxplot_human.eps",
+            format='eps',
+            dpi=300,
+            bbox_inches='tight')
 plt.show()
 
 
@@ -402,10 +404,10 @@ fig, ax = plt.subplots(figsize=(6, 4))
 ax.set_title('Distribution of Calculated Number of Well Determined Parameters')
 sns.boxplot(data=certainty_df, notch=True, showfliers=False, palette="Blues")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\orgAcc_certainty_scaledX_nolog_boxplot_human.eps",
-#             format='eps',
-#             dpi=300,
-#             bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\organicAcc\\orgAcc_certainty_scaledX_nolog_boxplot_human.eps",
+            format='eps',
+            dpi=300,
+            bbox_inches='tight')
 plt.show()
 
 
@@ -419,9 +421,9 @@ ax.set_title('Distribution of Intercepts [Unscaled]:')
 ax.axhline(0, ls='--')
 sns.boxplot(data=intercept_df, notch=True, showfliers=False, palette="coolwarm")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\orgAcc_intercepts_nolog_boxplot_human.eps", dpi=300,
-#             format='eps',
-#             bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\organicAcc\\orgAcc_intercepts_nolog_boxplot_human.eps", dpi=300,
+            format='eps',
+            bbox_inches='tight')
 plt.show()
 
 
@@ -434,9 +436,9 @@ fig, ax = plt.subplots(figsize=(6, 4))
 ax.set_title('Distribution of Bayesian Uncertainty in Predictions')
 sns.boxplot(data=pred_certainty_df, notch=True, showfliers=False, palette="Reds")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\orgAcc_pred_certainty_scaledX_nolog_boxplot_human.eps",
-#             dpi=300, format='eps',
-#             bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\organicAcc\\orgAcc_pred_certainty_scaledX_nolog_boxplot_human.eps",
+            dpi=300, format='eps',
+            bbox_inches='tight')
 plt.show()
 
 # Following https://christophm.github.io/interpretable-ml-book/limo.html for individual feature importances
