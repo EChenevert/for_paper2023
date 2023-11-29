@@ -328,7 +328,9 @@ for key in marshdic:
 
     baymod = linear_model.BayesianRidge(fit_intercept=True)
 
-    results_dict = funcs.cv_results_and_plot(baymod, bestfeaturesM, phi, X, y, {'cmap': 'YlOrRd', 'line': "r--"}, str(key))
+    results_dict = funcs.cv_results_and_plot_PATH(baymod, bestfeaturesM, phi, X, y,
+                                                  {'cmap': 'YlOrRd', 'line': "r--"}, str(key),
+                                                  "D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\")
 
     hold_marsh_weights[key] = results_dict["Scaled Weights"]
     hold_unscaled_weights[key] = results_dict["Unscaled Weights"]
@@ -376,10 +378,14 @@ for key in hold_marsh_weights:
     sns.barplot(list(d['index']), list(d['Means']), palette=palette_ls)
     funcs.wrap_labels(ax, 10)
     fig.subplots_adjust(bottom=0.3)
-#    fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\" + str(key) +
-#                "_supp_scaledX_nolog_boxplot_human.eps", format='eps',
-#                dpi=300,
-#                bbox_inches='tight')
+    fig.savefig("D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\" + str(key) +
+               "_supp_scaledX_nolog_boxplot_human.eps", format='eps',
+               dpi=300,
+               bbox_inches='tight')
+    fig.savefig("D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\" + str(key) +
+               "_supp_scaledX_nolog_boxplot_human.png", format='png',
+               dpi=300,
+               bbox_inches='tight')
     plt.show()
 
 # Plot the distribution of weight parameters for the marsh runs
@@ -400,10 +406,10 @@ for key in hold_unscaled_weights:
     boxplot = sns.boxplot(data=hold_unscaled_weights[key], notch=True, showfliers=False, palette=palette_ls, width=0.4)
     funcs.wrap_labels(ax, 10)
     fig.subplots_adjust(bottom=0.3)
-#    fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\" + str(
-#        key) + "_supp_unscaledWeights_nolog_boxplot_human.eps", format='eps',
-#                dpi=300,
-#                bbox_inches='tight')
+    fig.savefig("D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\" + str(
+       key) + "_supp_unscaledWeights_nolog_boxplot_human.eps", format='eps',
+               dpi=300,
+               bbox_inches='tight')
     plt.show()
 
 
@@ -415,10 +421,10 @@ fig, ax = plt.subplots(figsize=(6, 4))
 ax.set_title('Distribution of Learned Effective Regularization Parameters')
 sns.boxplot(data=eff_reg_df, notch=True, showfliers=False, palette="YlOrBr")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\supp_regularization_scaledX_nolog_boxplot_human.eps",
-#            format='eps',
-#            dpi=300,
-#            bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\supp_regularization_scaledX_nolog_boxplot_human.eps",
+           format='eps',
+           dpi=300,
+           bbox_inches='tight')
 plt.show()
 
 
@@ -431,10 +437,10 @@ fig, ax = plt.subplots(figsize=(6, 4))
 ax.set_title('Distribution of Calculated Number of Well Determined Parameters')
 sns.boxplot(data=certainty_df, notch=True, showfliers=False, palette="Blues")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\supp_certainty_scaledX_nolog_boxplot_human.eps",
-#            format='eps',
-#            dpi=300,
-#            bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\supp_certainty_scaledX_nolog_boxplot_human.eps",
+           format='eps',
+           dpi=300,
+           bbox_inches='tight')
 plt.show()
 
 
@@ -448,9 +454,9 @@ ax.set_title('Distribution of Intercepts [Unscaled]:')
 ax.axhline(0, ls='--')
 sns.boxplot(data=intercept_df, notch=True, showfliers=False, palette="coolwarm")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\supp_intercepts_nolog_boxplot_human.eps", dpi=300,
-#            format='eps',
-#            bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\supp_intercepts_nolog_boxplot_human.eps", dpi=300,
+           format='eps',
+           bbox_inches='tight')
 plt.show()
 
 
@@ -463,9 +469,9 @@ fig, ax = plt.subplots(figsize=(6, 4))
 ax.set_title('Distribution of Bayesian Uncertainty in Predictions')
 sns.boxplot(data=pred_certainty_df, notch=True, showfliers=False, palette="Reds")
 funcs.wrap_labels(ax, 10)
-# fig.savefig("D:\\Etienne\\PAPER_2023\\results_BLR\\pred_certainty_scaledX_nolog_boxplot_human.eps",
-#            dpi=300, format='eps',
-#            bbox_inches='tight')
+fig.savefig("D:\\Etienne\\PAPER_2023\\additional_supplemental\\blr_per_basin\\pred_certainty_scaledX_nolog_boxplot_human.eps",
+           dpi=300, format='eps',
+           bbox_inches='tight')
 plt.show()
 
 # Following https://christophm.github.io/interpretable-ml-book/limo.html for individual feature importances

@@ -806,6 +806,10 @@ def cv_results_and_plot_PATH(bay_model, bestfeatures, unscaled_predictor_matrix,
                 "_scaledX_nolog_cv_human.eps", format='eps',
                 dpi=300,
                 bbox_inches='tight')
+    fig.savefig(path + marsh_key +
+                "_scaledX_nolog_cv_human.png", format='png',
+                dpi=300,
+                bbox_inches='tight')
     plt.show()
 
 
