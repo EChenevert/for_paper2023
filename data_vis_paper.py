@@ -143,7 +143,7 @@ fig2.savefig("D:\\Etienne\\PAPER_2023\\data_vis\\ndvi_salinity_VEGE_scatterplot.
             dpi=300, format="eps")
 
 # Show that TSS comliments the interpretation that position in tidal frame is related to Suspended Sediment delivery
-tss = np.asarray(df['TSS (mg/l)'])
+tss = np.asarray(df['TSS (mg/L)'])
 
 fig2, ax2 = plt.subplots(figsize=(8, 6))
 scat2 = ax2.scatter(tss, all_acc, c=bulk, cmap="rocket_r", s=50*10**bulk)
@@ -314,4 +314,9 @@ plt.show()
 f.savefig("D:\\Etienne\\PAPER_2023\\data_vis\\allmarshes_ndvi_histogram.eps",
           dpi=300, format="eps")
 
+
+### Add distribution of avg. time flooded for reviewers
+
+sns.histplot(data=df, x='Avg. Time Flooded (%)')
+plt.show()
 

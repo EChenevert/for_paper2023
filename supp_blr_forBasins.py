@@ -261,6 +261,10 @@ calc_sabdf = gdf[gdf['Basins'] == 'Calcasieu_Sabine']
 directly_supplied = gdf[(gdf['Basins'] == 'MRD') | (gdf['Basins'] == 'Atchafalaya')]
 indirectly_supplied = gdf[(gdf['Basins'] != 'MRD') | (gdf['Basins'] != 'Atchafalaya')
                           | (gdf['Basins'] != np.nan) | (gdf['Basins'] != 'Unnamed_basin')]
+# Chenier Plain
+chenier = gdf[(gdf['Basins'] == 'Calcasieu_Sabine') | (gdf['Basins'] == 'Mermentau')]
+delta_proper = gdf[(gdf['Basins'] != 'Calcasieu_Sabine') | (gdf['Basins'] != 'Mermentau')
+                   | (gdf['Basins'] != np.nan) | (gdf['Basins'] != 'Unnamed_basin')]
 
 marshdic = {'All': gdf, 'Ponchartrain': ponchartraindf, 'BrentonSound': brentondf,
             # 'MRD': mrddf,  # Excluded because not enough data for cross-validation assessment and linaer regression significance
@@ -271,7 +275,10 @@ marshdic = {'All': gdf, 'Ponchartrain': ponchartraindf, 'BrentonSound': brentond
             'Mermentau': mermdf,
             # 'CalcasieuSabine': calc_sabdf, # Excluded because no features were deemed below the set significance threshold in the backward elimination process
             'Indirectly_supplied': indirectly_supplied,
-            'directly_supplied': directly_supplied}
+            'directly_supplied': directly_supplied,
+            'Chenier_plain': chenier,
+            'Eastern_delta_proper': delta_proper
+            }
 
 
 hold_marsh_weights = {}
