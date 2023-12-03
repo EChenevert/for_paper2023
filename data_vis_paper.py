@@ -320,3 +320,39 @@ f.savefig("D:\\Etienne\\PAPER_2023\\data_vis\\allmarshes_ndvi_histogram.eps",
 sns.histplot(data=df, x='Avg. Time Flooded (%)')
 plt.show()
 
+### Explore the relative importance of organic and mineral accumulation between freshwater and saline marshes
+df['Average_Ac_cm_yr'] = df['Accretion Rate (mm/yr)'] / 10  # mm to cm conversion
+# d['Mineral_De'] = d['Bulk_Densi'] - d['Organic_De']
+# d['Bulk Accumulation (g/cm3)'] = d['Bulk_Densi'] * d['Average_Ac_cm'] * 10000  # Equation from Nyman et al 2006
+# d['Organic Accumulation (g/cm3)'] = d['Bulk_Densi'] * d['Average_Ac_cm'] * 10000  # Equation from Nyman et al 2006
+A = 10000  # This is the area of the study, in our case it is per site, so lets say the area is 1 m2 in cm
+df['Total Mass Accumulation (g/yr cm2)'] = (df['Bulk Density (g/cm3)'] * df['Average_Ac_cm_yr']) * A  # g/cm3 * cm/yr * cm2 = g/yr
+df['Organic Mass Accumulation (g/yr cm2)'] = (df['Bulk Density (g/cm3)'] * df['Average_Ac_cm_yr'] * (df['Organic Matter (%)']/100)) * A
+df['Mineral Mass Accumulation (g/yr cm2)'] = df['Total Mass Accumulation (g/yr cm2)'] - df['Organic Mass Accumulation (g/yr cm2)']
+df['Organic Mass Accumulation Fraction'] = df['Organic Mass Accumulation (g/yr cm2)']/df['Total Mass Accumulation (g/yr cm2)']
+
+# Organic Fraction of Accreted sediment
+plt.figure()
+sns.boxplot(data=df, x='Community', y='Organic Matter (%)', showfliers=False)
+plt.show()
+
+plt.figure()
+sns.boxplot(data=df, x='Community', y='Organic Mass Accumulation (g/yr cm2)', showfliers=False)
+plt.show()
+
+plt.figure()
+sns.boxplot(data=df, x='Community', y='Mineral Mass Accumulation (g/yr cm2)', showfliers=False)
+plt.show()
+
+plt.figure()
+sns.boxplot(data=df, x='Community', y='Total Mass Accumulation (g/yr cm2)', showfliers=False)
+plt.show()
+
+### Investigating the control of accretion (mineral v organic)
+plt.figure()
+sns.scatterplot(data=df, x='Accretion Rate (mm/yr)', y='Organic Mass Accumulation (g/yr cm2)', hue='Community')
+plt.show()
+
+plt.figure()
+sns.scatterplot(data=df, x='Accretion Rate (mm/yr)', y='Mineral Mass Accumulation (g/yr cm2)', hue='Community')
+plt.show()
